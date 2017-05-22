@@ -309,6 +309,7 @@ handlers.newGame = function(args, context){
     server.UpdateUserData({
         PlayFabId: currentPlayerId,
         Data: {
+            deckId: response.deck_id,
             deck_id: response.deck_id,
             isActiveGame: true,
             round:0
@@ -321,4 +322,18 @@ handlers.newGame = function(args, context){
     return { responseContent: response };
 
 };
+
+handlers.dispense = function(args, context){
+
+
+    var cmd ={
+        PlayFabId: currentPlayerId,
+        Data: {
+            deckId: response.deck_id,
+            deckId: response.deckId
+        }
+    };
+
+    server.GetUserData(cmd);
+}
 
