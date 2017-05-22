@@ -309,7 +309,7 @@ handlers.newGame = function(args, context){
     server.UpdateUserData({
         PlayFabId: currentPlayerId,
         Data: {
-            deckId: response.deck_id,
+            deckId: JSON.parse(response).deck_id,
             deck_id: response.deck_id,
             isActiveGame: true,
             round:0
