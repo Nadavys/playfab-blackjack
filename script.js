@@ -312,7 +312,8 @@ handlers.newGame = function(args, context){
             deck_id: response.deck_id,
             isActiveGame: true,
             round:0
-        }
+        },
+        Permission: "Public"
     });
 
 //item
