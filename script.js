@@ -329,8 +329,8 @@ handlers.dispense = function(args, context){
     var cmd ={
         PlayFabId: currentPlayerId,
         Data: {
-            deckId: response.deck_id,
-            deckId: response.deckId
+            deckId: JSON.parse(response).deck_id,
+            deckId: response
         }
     };
 
