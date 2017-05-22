@@ -3,7 +3,7 @@
  */
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// **** coming from GITHUB!!!
+// **** coming from GITHUB XXX
 
 // Welcome to your first Cloud Script revision!
 //
@@ -315,7 +315,7 @@ handlers.newGame = function(args, context){
         }
     });
 
-
+//item
 
     return { responseContent: response };
 
