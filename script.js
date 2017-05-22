@@ -306,6 +306,9 @@ handlers.newGame = function(args, context){
     var response = http.request(url, httpMethod);
 
 
+    console.log("deckId" JSON.parse(response).deck_id);
+    console.log("deckId" response.deck_id);
+
     server.UpdateUserData({
         PlayFabId: currentPlayerId,
         Data: {
