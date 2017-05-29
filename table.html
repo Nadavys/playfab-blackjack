@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--<title><g:layoutTitle default="Grails"/></title>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/blackjack.css" >
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
+
+    <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
+    <script src="resources/util.js"></script>
+    <script src="resources/angularApp/blackjackGame/app.js"></script>
+    <script src="resources/angularApp/blackjackGame/controllers.js"></script>
+    <script src="resources/angularApp/blackjackGame/directives.js"></script>
+    <script src="resources/angularApp/blackjackGame/services.js"></script>
+
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '923488464396483',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<div id="navbar_placeholder"></div>
+<br/>
+
+<div class="container" role="main">
+
+    <div ng-app="app" >
+        <div ng-controller="GameTableController">
+<br/>
+            <div class="" >
+                <h1>Welcome {{ ::userId}} <small>Balance: {{currentPlayer.virtualCurrency.CN}} coins</small></h1>
+                <p></p>
+                <!--<pre>{{currentPlayer}}</pre>-->
+            </div>
+            <div ng-show="generalMessage.message" class="alert alert-{{generalMessage.alertLevel}}">{{ generalMessage.message }}</div>
+
+            <div class="row">
+
+            <div class="form-group col-md-6" >
+                <label for="betAmount">Bet Amount</label>
+                <input type="number" class="form-control" id="betAmount" aria-describedby="betAmount" placeholder="coins" ng-model="betAmount">
+                <small id="hlp" class="form-text text-muted">The more you bet the more you win.</small>
+            </div>
+
+
+                <div class="form-group col-md-6" >
+                    <label for="betAmount"></label>
+                    <button class="btn btn-lg btn-danger blink  btn-block" ng-click="playGame()" ng-disabled="!(betAmount && currentPlayer.virtualCurrency.CN )">Play</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4" >
+                    <button class="btn btn-lg btn-primary" ng-click="buyCoins(500)">Buy 500 Coins!</button>
+                </div>
+                <div class="form-group col-md-4" >
+                    <h3>XP: {{currentPlayer.virtualCurrency.XP}}</h3>
+                </div>
+                <div class="form-group col-md-4" >
+                    Unicorns: {{currentPlayer.virtualCurrency.UN}}
+                    <img ng-repeat="n in getUnicornTimes() track by $index | limitTo:50" src="https://t4.ftcdn.net/jpg/01/25/07/77/240_F_125077712_y9NRAdU8FmpsUgApG7tMM4wk3NFT6Fkv.jpg" width="40em"/>
+                    <div> <small class="text-muted">For each blackjack you win a Unicorn</small></div>
+                </div>
+                <div>Deck Cards Remaining {{deck.remaining}}</div>
+                <!--<pre>{{deck}}</pre>-->
+            </div>
+            <!--<br/>-->
+            <div class="row">
+                <gameplayer player="dealer" game="game"></gameplayer>
+                <gameplayer player="currentPlayer" game="game" current-player-id="currentPlayerId" ng-if="currentPlayer"></gameplayer>
+            </div>
+
+            <div class="form-group" >
+                <!--<label for="betAmount">Facebook</label>-->
+                <button class="btn btn-lg btn-primary btn-block" ng-click="fbConnect()" >Facebook Connect</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer" role="contentinfo"></div>
+
+</div> <!-- /container -->
+
+</body>
+</html>

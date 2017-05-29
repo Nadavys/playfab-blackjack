@@ -1,0 +1,56 @@
+<div class="user row well gameplayerSpace"  ng-class="{ 'currentTurn' : player.id == game.activePlayer, 'hand-won': player.hand.status == 'WON', 'hand-bust': player.hand.status == 'BUST'}">
+
+    <div class="col-md-2 col-xs-4" style="position: relative;">
+
+        <img ng-src="{{player.avatarUrl}}" class="img-responsive img-circle"/>
+
+                <span ng-show="player.hand.status == 'BUST'"  class="playerStatus" >
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Bust
+                </span>
+
+                <span ng-show="player.hand.status == 'WON'  && player.hand.bestValue != 21" class="playerStatus">
+                    <span  class="glyphicon glyphicon-ok"></span>
+                    Won
+                </span>
+                <span ng-show="player.hand.bestValue == 21" class="playerStatus playerStatus-blackjack" style="">
+                    <!--<span  class="glyphicon glyphicon-ok"></span>-->
+                   Blackjack
+                </span>
+                <span ng-show="player.hand.status == 'EVEN'"  class="playerStatus">
+                    <span  class="glyphicon glyphicon-ok"></span>
+                    Even
+                </span>
+
+
+        <div class=" " style="text-align: center;" ng-show="player.hand.bestValue">
+
+            <!--<dl>-->
+            <!--<dd>Value(s)</dd>-->
+            <!--<dt  class="playerTimer">{{player.hand.handValue.join(', ')}}</dt>  -->
+
+            <h2> Value: {{player.hand.bestValue}}</h2>
+
+            <!--</dl>-->
+            <!--<div class="btn-block" ng-show="player.id == currentPlayerId && game.activePlayer == currentPlayerId" >-->
+            <!--<button class="btn btn-danger btn-lg btn-block" ng-click="cmdPlayerMove('HIT')" >Hit</button>-->
+            <!--<button class="btn btn-primary btn-lg btn-block" ng-click="cmdPlayerMove('STAND')" >Stand</button>-->
+            <!--</div>-->
+
+        </div>
+
+    </div>
+
+    <div class="col-md-10 col-xs-8" xstyle="border: 1px solid green">
+        <div class="row">
+            <div class="name" style="">{{player.name}} </div>
+        </div>
+        <div class="row col-md-12 pull-left">
+            <div class="hand-area xpull-left">
+                <hand hand="player.hand"/>
+            </div>
+
+
+        </div>
+    </div>
+</div>

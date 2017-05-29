@@ -1,0 +1,165 @@
+.card {
+  width: 100px;
+  height: 120px;
+  border: 1px solid  #2F2F2F;
+  position: relative;
+  background-color: #fbfbfb;
+  font-family: 'Helvetica', serif;
+  margin: 5px;
+  padding: 5px 0 0 15px;
+  border-radius: 8px;
+  box-shadow: 6px 6px 4px #888888;
+}
+
+.rank{
+    font-size: 30px;
+    width: 27px;
+    text-align: center;
+}
+
+.suit{
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.card.back {
+  text-indent: -9999px;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJElEQVQIW2NkwAT/GdHE/gP5jMiCYAGQIpggTACuEq4CatR/ABtJBwTL3L3TAAAAAElFTkSuQmCC) repeat;
+}
+
+.spades, .clubs {
+  color: black;
+}
+
+.hearts, .diamonds {
+  color: red;
+}
+
+div.currentTurn{
+    background-color: #FAEBCC;
+}
+
+.hand-won .hand-status{
+    color: green;
+    font-size: 20px;
+
+}
+
+.hand-bust .hand-status {
+    color: red
+}
+
+.isHiddenCard{
+    /* On "top" */
+    background: repeating-radial-gradient(
+        circle,
+        purple,
+        purple 10px,
+        #4b026f 10px,
+        #4b026f 20px
+    );}
+
+.isHiddenCard{
+
+background:
+  /* On "top" */
+  repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    #ccc 10px,
+    #ccc 20px
+  ),
+/* on "bottom" */
+    linear-gradient(
+    to bottom,
+    #eee,
+    #999
+);
+}
+
+.name {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+.playerStatus{
+    -webkit-text-stroke: 1px black;
+    color: white;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    position: absolute;
+    font-size: 46px;
+    font-style: italic;
+    font-family: 'comic sans ms';
+    top:15%;
+
+    -ms-transform: rotate(11deg);
+    -webkit-transform: rotate(11deg);
+    transform: rotate(11deg);
+}
+
+.hand-bust .playerStatus{
+    color: red;
+}
+
+.hand-won .playerStatus {
+    color: green;
+}
+
+@keyframes blink {
+    0% { color: red; }
+    100% { color: black; }
+}
+@-webkit-keyframes blink {
+    0% { color: red; }
+    100% { color: black; }
+}
+.blink {
+    -webkit-animation: blink 1s linear infinite;
+    -moz-animation: blink 1s linear infinite;
+    animation: blink 1s linear infinite;
+}
+
+.playerTimer{
+    font-size: 20px;
+}
+
+.joinGameButton{
+
+}
+
+#joinGameButton button{
+}
+
+.playerStatus-blackjack{
+    font-size: 37px;
+    margin-left:-5px;
+}
+
+
+@media screen and (max-width: 767px){
+    .playerStatus, .playerStatus-blackjack{
+        font-size: 1.8em;
+        position: static;
+
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .playerStatus, .playerStatus-blackjack{
+        position: static;
+        font-size: 2.7em;
+
+    }
+}
+
+
+
+.psr{
+    border: 1px solid red;
+}

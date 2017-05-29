@@ -305,15 +305,10 @@ handlers.newGame = function(args, context){
     // The pre-defined http object makes synchronous HTTP requests
     var response = http.request(url, httpMethod);
 
-
-    console.log("deckId" JSON.parse(response).deck_id);
-    console.log("deckId" response.deck_id);
-
     server.UpdateUserData({
         PlayFabId: currentPlayerId,
         Data: {
             deckId: JSON.parse(response).deck_id,
-            deck_id: response.deck_id,
             isActiveGame: true,
             round:0
         },
@@ -328,15 +323,16 @@ handlers.newGame = function(args, context){
 
 handlers.dispense = function(args, context){
 
+    var count = args.count || 2;
+    var deckId = args.deckId;
 
-    var cmd ={
-        PlayFabId: currentPlayerId,
-        Data: {
-            deckId: JSON.parse(response).deck_id,
-            deckId: response
-        }
-    };
+    var url = 'https://deckofcardsapi.com/api/deck/'+deckId+'/draw/?count='+count
+    var httpMethod = "get";
 
-    server.GetUserData(cmd);
+    // The pre-defined http object makes synchronous HTTP requests
+    var response = http.request(url, httpMethod);
+
+
+    response
 }
 
