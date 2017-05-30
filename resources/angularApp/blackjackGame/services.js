@@ -68,7 +68,7 @@ angular.module('app.services', [])
                                 value += 10;
                                 break;
                             case "ACE":
-                                value += 10;
+                                value += 11;
                                 break;
                             default:
                                 value += parseInt(card.value)
